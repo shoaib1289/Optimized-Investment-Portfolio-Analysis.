@@ -33,9 +33,9 @@ Finally, we apply Mean-Variance Optimization to the portfolio to maximize the Sh
 ## Results
 The optimized portfolio provides the following key results:
 
-Optimized Portfolio Weights: A set of weights for each stock in the portfolio, calculated to maximize the risk-return trade-off.
-Expected Annual Return: The projected annual return of the optimized portfolio.
-Annual Volatility: The risk associated with the portfolio, represented as the standard deviation of portfolio returns.
-Sharpe Ratio: A measure of risk-adjusted return, which indicates how much return is earned per unit of risk.
+##### Optimized Portfolio Weights: A set of weights for each stock in the portfolio, calculated to maximize the risk-return trade-off.
+##### Expected Annual Return: The projected annual return of the optimized portfolio.
+##### Annual Volatility: The risk associated with the portfolio, represented as the standard deviation of portfolio returns.
+##### Sharpe Ratio: A measure of risk-adjusted return, which indicates how much return is earned per unit of risk.
 
 
