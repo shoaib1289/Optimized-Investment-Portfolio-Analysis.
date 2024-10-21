@@ -3,11 +3,11 @@
 This project constructs an optimized investment portfolio using a factor-based approach to balance risk and return. The goal is to identify undervalued stocks with strong financial health and use data-driven methods to maximize returns while minimizing risk. This approach leverages financial metrics such as Price-to-Earnings (P/E) Ratio and Return on Equity (ROE) to select high-quality stocks, and applies various machine learning techniques like Principal Component Analysis (PCA) and K-Means Clustering to ensure diversification and reduce complexity. The final portfolio is optimized using Mean-Variance Optimization to achieve the best risk-return trade-off.
 
 ## Key Objectives:
-Select High-Quality Stocks: Identify undervalued stocks based on their P/E Ratio and ROE to ensure better long-term returns.
-Reduce Dimensionality with PCA: Simplify the stock return data to focus on key factors driving performance.
-Ensure Diversification through K-Means Clustering: Group stocks into clusters based on return patterns to diversify and minimize overexposure to correlated assets.
-Analyze Stock Relationships with Graphical Analysis: Visualize the correlations and dependencies between stocks to understand their interactions.
-Optimize the Portfolio with Mean-Variance Optimization: Adjust stock weights to maximize the Sharpe Ratio, aiming to achieve the highest return for the lowest level of risk.
+#### Select High-Quality Stocks: Identify undervalued stocks based on their P/E Ratio and ROE to ensure better long-term returns.
+#### Reduce Dimensionality with PCA: Simplify the stock return data to focus on key factors driving performance.
+#### Ensure Diversification through K-Means Clustering: Group stocks into clusters based on return patterns to diversify and minimize overexposure to correlated assets.
+#### Analyze Stock Relationships with Graphical Analysis: Visualize the correlations and dependencies between stocks to understand their interactions.
+#### Optimize the Portfolio with Mean-Variance Optimization: Adjust stock weights to maximize the Sharpe Ratio, aiming to achieve the highest return for the lowest level of risk.
 ## Methodology
 1. Stock Data Collection
 Downloaded adjusted close price data for S&P 500 stocks from Yahoo Finance for the period between 2020 and 2023. The dataset is cleaned, and stocks with missing data are removed. This data provides the basis for calculating daily returns and conducting further analysis.
