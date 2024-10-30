@@ -10,31 +10,12 @@ from scipy.optimize import minimize
 
 # Step 1: Download S&P 500 Stock Data
 def download_stock_data(start_date, end_date):
-    """
-    Download adjusted close price data for S&P 500 companies from Yahoo Finance.
-    
-    Parameters:
-    start_date (str): Start date in 'YYYY-MM-DD' format.
-    end_date (str): End date in 'YYYY-MM-DD' format.
-    
-    Returns:
-    DataFrame: Cleaned stock price data (only stocks with no missing data).
-    """
     sp500_tickers = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')[0]['Symbol'].tolist()
     stocks_data = yf.download(sp500_tickers, start=start_date, end=end_date)['Adj Close']
     return stocks_data.dropna(axis=1)  # Remove columns with missing data
 
 # Step 2: Get P/E Ratio and ROE data
 def get_fundamental_data(tickers):
-    """
-    Fetch P/E Ratios and ROE for each stock using Yahoo Finance API.
-    
-    Parameters:
-    tickers (list): List of stock tickers.
-    
-    Returns:
-    DataFrame: DataFrames of P/E Ratios and ROE for the stocks.
-    """
     pe_ratios = {}
     roe = {}
 
@@ -54,17 +35,6 @@ def get_fundamental_data(tickers):
 
 # Step 3: Rank stocks based on P/E and ROE
 def rank_stocks(pe_ratios_df, roe_df, top_n=20):
-    """
-    Rank stocks based on P/E (ascending) and ROE (descending) and select the top stocks.
-    
-    Parameters:
-    pe_ratios_df (DataFrame): DataFrame of P/E Ratios.
-    roe_df (DataFrame): DataFrame of ROE values.
-    top_n (int): Number of top-ranked stocks to select (default is 20).
-    
-    Returns:
-    list: List of top-ranked stock tickers.
-    """
     # Merge P/E and ROE DataFrames
     fundamentals = pe_ratios_df.join(roe_df, how='inner')
     
@@ -85,30 +55,11 @@ def rank_stocks(pe_ratios_df, roe_df, top_n=20):
 
 # Step 4: Calculate daily returns for the selected stocks
 def get_stock_returns(stocks_data, selected_stocks):
-    """
-    Calculate daily returns for the selected stocks.
-    
-    Parameters:
-    stocks_data (DataFrame): Adjusted close price data for all stocks.
-    selected_stocks (list): List of selected stock tickers.
-    
-    Returns:
-    DataFrame: Daily returns for the selected stocks.
-    """
     top_20_data = stocks_data[selected_stocks]
     return top_20_data.pct_change().dropna()
 
 # Step 5: Perform PCA
 def perform_pca(returns):
-    """
-    Perform Principal Component Analysis (PCA) on stock returns and plot explained variance.
-    
-    Parameters:
-    returns (DataFrame): Stock returns data.
-    
-    Returns:
-    PCA: PCA object after fitting the data.
-    """
     pca = PCA()
     pca.fit(returns)
     explained_variance = pca.explained_variance_ratio_
@@ -126,16 +77,6 @@ def perform_pca(returns):
 
 # Step 6: Apply K-Means clustering
 def apply_kmeans(returns, n_clusters=3):
-    """
-    Apply K-Means clustering on stock returns and plot the clusters.
-    
-    Parameters:
-    returns (DataFrame): Stock returns data.
-    n_clusters (int): Number of clusters for K-Means (default is 3).
-    
-    Returns:
-    ndarray: Cluster labels for each stock.
-    """
     kmeans = KMeans(n_clusters=n_clusters)
     clusters = kmeans.fit_predict(returns)
     returns['Cluster'] = clusters
@@ -150,12 +91,6 @@ def apply_kmeans(returns, n_clusters=3):
 
 # Step 7: Perform correlation and graphical analysis
 def plot_correlation_graph(returns):
-    """
-    Plot the correlation matrix and a graph representation of correlations.
-    
-    Parameters:
-    returns (DataFrame): Stock returns data.
-    """
     correlation_matrix = returns.corr()
     
     # Plot correlation matrix
@@ -180,15 +115,6 @@ def plot_correlation_graph(returns):
 
 # Step 8: Optimize the portfolio using Mean-Variance Optimization
 def optimize_portfolio(returns):
-    """
-    Optimize the portfolio to maximize the Sharpe Ratio.
-    
-    Parameters:
-    returns (DataFrame): Stock returns data.
-    
-    Returns:
-    DataFrame: Optimized portfolio weights.
-    """
     returns_for_optimization = returns.drop(columns=['Cluster'])
     
     # Function to calculate portfolio performance
